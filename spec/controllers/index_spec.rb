@@ -9,6 +9,13 @@ describe 'index.rb' do
       get '/sealions'
       expect(last_response).to be_ok
     end
+
+    it 'should get a specific sealion from the database' do
+      get '/sealions/1'
+      expect(last_response).to be_ok
+      expect(last_response.body).to include("Tracy Teague")
+    end
+
   end
 
   #post
@@ -21,6 +28,7 @@ describe 'index.rb' do
       expect(last_response).to be_ok
       expect(last_response.body).to include('SeALiOnZ')
     end
+
 
   end
 
