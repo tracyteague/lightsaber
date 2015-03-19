@@ -7,7 +7,7 @@ end
 # "show RESTFUL command
 get '/sealions/:id' do
   show = Sealion.find(params[:id])
-  "#{show.first_name} #{show.last_name}"
+  "Name: #{show.first_name} #{show.last_name}, Age: #{show.age}, Location: #{show.location}, Quirk: #{show.quirk}"
 end
 
 get '/sealions' do
@@ -17,13 +17,13 @@ end
 #changed redirect to '/sealions/:id' with new sealion object
 post '/sealions' do
   Sealion.create{params}
-  redirect '/sealions/:id'
+  redirect '/sealions'
 end
 
 #changed redirect to '/sealions/:id' with new update
 put '/sealions' do
   Sealion.find(params[:id]).update_attributes!(params)
-  redirect '/sealions/:id'
+  redirect '/sealions'
 end
 
 delete '/sealions' do

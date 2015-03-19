@@ -56,7 +56,7 @@ describe 'index.rb' do
     end
 
     it 'should redirect to the /sealions route' do
-      put '/sealions', :params => with_a_param=true
+      put '/sealions', Sealion.find(5).update_attributes!(first_name: "Zack")
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_response).to be_ok
@@ -70,7 +70,9 @@ describe 'index.rb' do
   describe '#delete' do
 
     it 'should destroy a Sealion object' do
-      delete '/sealions'
+      delete '/sealions', Sealion.find(5).destroy!
+      # I expect that when searching for the Sealion with id: 5,
+      # the Sealion won't be found.
 
     end
 
