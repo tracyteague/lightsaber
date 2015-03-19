@@ -26,7 +26,15 @@ describe 'index.rb' do
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_response).to be_ok
-      expect(last_response.body).to include('SeALiOnZ')
+      expect(last_response.body).to include(Sealion.all.to_json)
+    end
+
+    it 'should post new information to the /sealions route' do
+      post '/sealions', :params => {id: 5, first_name: "Hoa"}
+      expect(last_response).to be_redirect
+      follow_redirect!
+      expect(last_response).to be_ok
+      expect(last_response.body).to include(Sealion.all.to_json)
     end
 
 
@@ -40,7 +48,7 @@ describe 'index.rb' do
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_response).to be_ok
-      expect(last_response.body).to include('SeALiOnZ')
+      expect(last_response.body).to include(Sealion.all.to_json)
     end
 
   end
