@@ -1,7 +1,8 @@
 require_relative '../spec_helper.rb'
 
 describe 'index.rb' do
-
+#last_request
+let(:tracy) { Sealion.create(first_name: "Tracy", last_name: "Teague", age: 25, location: "New York, NY", quirk: "Puts ketchup on everything") }
 #-----GET------
 
   describe '#get' do
@@ -9,10 +10,11 @@ describe 'index.rb' do
     it 'should get the /sealions route' do
       get '/sealions'
       expect(last_response).to be_ok
+
     end
 
     it 'should get a specific sealion from the database' do
-      get '/sealions/1'
+      get "/sealions/#{tracy.id}" #don't hardcode #always double quotes string interp
       expect(last_response).to be_ok
       expect(last_response.body).to include("Tracy Teague")
     end
@@ -21,27 +23,27 @@ describe 'index.rb' do
 
 #-----POST-----
 
-  describe '#post' do
+#   describe '#post' do
 
-# Would I be able to use 'let' to create a new Sealion
-# simply for testing to be available for the whole test?
-# I hard-coded an id: 5 here for testing purposes
+# # Would I be able to use 'let' to create a new Sealion
+# # simply for testing to be available for the whole test?
+# # I hard-coded an id: 5 here for testing purposes
 
-    it 'should post new information to the /sealions route' do
-      post '/sealions', :params => {id: 5, first_name: "Link", last_name: "Blaine", age: 27, location: "New York, NY", quirk: "Making raindrop cheek noises."}
-      expect(Sealion.find(5)).to include("Link Blaine")
-    end
+#     it 'should post new information to the /sealions route' do
+#       post '/sealions', :params => {id: 5, first_name: "Link", last_name: "Blaine", age: 27, location: "New York, NY", quirk: "Making raindrop cheek noises."}
+#       expect(Sealion.find(5)).to include("Link Blaine")
+#     end
 
-# Same quesiton as above re: using let
+# # Same quesiton as above re: using let
 
-    it 'should redirect to the /sealions route'
-      post '/sealions', :params => {first_name: "Link", last_name: "Blaine", age: 27, location: "New York, NY", quirk: "Making raindrop cheek noises."}
-      expect(last_response).to be_redirect
-      follow_redirect!
-      expect(last_response).to be_ok
-      expect(last_response.body).to include(Sealion.all.to_json)
-    end
-  end
+#     it 'should redirect to the /sealions route'
+#       post '/sealions', :params => {first_name: "Link", last_name: "Blaine", age: 27, location: "New York, NY", quirk: "Making raindrop cheek noises."}
+#       expect(last_response).to be_redirect
+#       follow_redirect!
+#       expect(last_response).to be_ok
+#       expect(last_response.body).to include(Sealion.all.to_json)
+#     end
+#   end
 
 #-----PUT-----
 
@@ -87,5 +89,4 @@ describe 'index.rb' do
   end
 
 end
-
 # NOTE TO SELF: If change redirect in post/put, fix tests
