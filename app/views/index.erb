@@ -1,0 +1,9 @@
+<h1>Meet the Sealions!</h1>
+
+  <div>
+    <% @sealions.each do |sealion| %>
+    <ul>
+      <%= sealion.id %>: <%= sealion.first_name %> <%= sealion.last_name %>, <%= sealion.age %>, <%= sealion.location %>, <%= sealion.quirk %>
+    </ul>
+    <% end %>
+  </div>

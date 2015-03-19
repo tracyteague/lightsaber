@@ -1,7 +1,13 @@
-require 'sinatra'
+# require 'sinatra'
 
 get '/' do
-  'Tracy Festa Teague'
+  @sealions = Sealion.all
+  erb :index
+end
+
+get '/sealions' do
+  @sealions = Sealion.all
+  erb :index
 end
 
 get '/sealions/new' do
@@ -13,15 +19,12 @@ post '/sealions/new' do
   redirect "/sealions/#{new_sealion.id}"
 end
 
-# "show RESTFUL command
 get '/sealions/:id' do
   sealion = Sealion.find(params[:id])
-  "Name: #{sealion.first_name} #{sealion.last_name}, Age: #{sealion.age}, Location: #{sealion.location}, Quirk: #{sealion.quirk}"
+  erb :show
 end
 
-get '/sealions' do
-  Sealion.all.to_json
-end
+
 
 put '/sealions/:id' do
   Sealion.find_by(id: params[:id]).update_attributes!(params)
