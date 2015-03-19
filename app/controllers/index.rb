@@ -14,14 +14,16 @@ get '/sealions' do
   Sealion.all.to_json
 end
 
+#changed redirect to '/sealions/:id' with new sealion object
 post '/sealions' do
   Sealion.create{params}
-  redirect '/sealions'
+  redirect '/sealions/:id'
 end
 
+#changed redirect to '/sealions/:id' with new update
 put '/sealions' do
   Sealion.find(params[:id]).update_attributes!(params)
-  redirect '/sealions'
+  redirect '/sealions/:id'
 end
 
 delete '/sealions' do
