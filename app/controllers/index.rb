@@ -4,32 +4,32 @@ get '/' do
   'Tracy Festa Teague'
 end
 
+get '/sealions/new' do
+  'This is where I will create a form to post a new Sealion.'
+end
+
+post '/sealions/new' do
+  new_sealion = Sealion.create{params}
+  redirect "/sealions/#{new_sealion.id}"
+end
+
 # "show RESTFUL command
 get '/sealions/:id' do
-  show = Sealion.find(params[:id])
-  "Name: #{show.first_name} #{show.last_name}, Age: #{show.age}, Location: #{show.location}, Quirk: #{show.quirk}"
+  sealion = Sealion.find(params[:id])
+  "Name: #{sealion.first_name} #{sealion.last_name}, Age: #{sealion.age}, Location: #{sealion.location}, Quirk: #{sealion.quirk}"
 end
 
 get '/sealions' do
   Sealion.all.to_json
 end
 
-#changed redirect to '/sealions/:id' with new sealion object
-post '/sealions' do
-  Sealion.create{params}
-  redirect '/sealions'
+put '/sealions/:id' do
+  Sealion.find_by(id: params[:id]).update_attributes!(params)
+  redirect '/sealions/:id'
 end
 
-#changed redirect to '/sealions/:id' with new update
-put '/sealions' do
-  Sealion.find(params[:id]).update_attributes!(params)
+delete '/sealions/:id' do
+  sealion = Sealion.find_by(id: params[:id])
+  sealion.destroy!
   redirect '/sealions'
 end
-
-delete '/sealions' do
-  Sealion.find(params[:id]).destroy!
-  redirect '/sealions'
-end
-
-# NOTE TO SELF: May want to edit redirect for post/puts
-# to be /sealions/:id
