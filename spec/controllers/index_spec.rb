@@ -18,7 +18,7 @@ describe 'index.rb' do
 
   end
 
-  #post
+
   describe '#post' do
 
     it 'should post new information to the /sealions route' do
@@ -29,21 +29,12 @@ describe 'index.rb' do
       expect(last_response.body).to include(Sealion.all.to_json)
     end
 
-    it 'should post new information to the /sealions route' do
-      post '/sealions', :params => {id: 5, first_name: "Hoa"}
-      expect(last_response).to be_redirect
-      follow_redirect!
-      expect(last_response).to be_ok
-      expect(last_response.body).to include(Sealion.all.to_json)
-    end
-
-
   end
 
   #put
   describe '#put' do
 
-    it 'should update data in the /sealions route' do
+    it 'should return to the /sealions route' do
       put '/sealions', :params => with_a_param=true
       expect(last_response).to be_redirect
       follow_redirect!
@@ -54,14 +45,16 @@ describe 'index.rb' do
   end
 
   #delete
+  #took out params as Ashi stated delete generally
+  #only needs the id from the route
   describe '#delete' do
 
     it 'should destroy information in the /sealions route' do
-      delete '/sealions', :params => with_a_param=true
+      delete '/sealions'
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_response).to be_ok
-      expect(last_response.body).to include('SeALiOnZ')
+      expect(last_response.body).to include(Sealion.all.to_json)
     end
 
   end
