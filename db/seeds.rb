@@ -1,1 +1,1 @@
-tracy = Sealion.create(first_name: "Tracy", last_name: "Teague", age: 25, location: "New York, NY", quirk: "I put ketchup on everything.")
+tracy = Sealion.create(id: 1, first_name: "Tracy", last_name: "Teague", age: 25, location: "New York, NY", quirk: "I put ketchup on everything.")
