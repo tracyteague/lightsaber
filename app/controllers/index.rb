@@ -30,3 +30,6 @@ delete '/sealions' do
   Sealion.find(params[:id]).destroy!
   redirect '/sealions'
 end
+
+# NOTE TO SELF: May want to edit redirect for post/puts
+# to be /sealions/:id
