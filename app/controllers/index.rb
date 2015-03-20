@@ -24,9 +24,30 @@ get '/sealions/:id' do
   erb :show
 end
 
-put '/sealions/:id' do
-  Sealion.find_by(id: params[:id]).update_attributes!(params)
-  redirect '/sealions/:id'
+get '/sealions/:id/edit' do
+   @sealion = Sealion.find_by(id: params[:id])
+   erb :edit
+ end
+
+put '/sealions/:id/edit' do
+  @sealion = Sealion.find_by(id: params[:id])
+
+  if @sealion
+    @sealion.first_name = params[:first_name]
+    @sealion.last_name = params[:last_name]
+    @sealion.age = params[:age]
+    @sealion.location = params[:location]
+    @sealion.quirk = params[:quirk]
+
+    if @sealion.save
+      redirect "/sealions/#{@sealion.id}"
+    else
+      [500, '"Ar, ar - arr-or! Something seems to have went wrong.']
+    end
+
+  else
+    [404, "Ar, ar - arr-or! This sealion has not been found."]
+  end
 end
 
 delete '/sealions/:id' do

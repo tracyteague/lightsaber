@@ -3,3 +3,8 @@
   <div>
       <%= @sealion.id %>: <%= @sealion.first_name %> <%= @sealion.last_name %>, <%= @sealion.age %>, <%= @sealion.location %>, <%= @sealion.quirk %>
   </div>
+
+
+  <div>
+    <a href="/sealions/<%= @sealion.id%>/edit">Edit Information</a>
+  </div>
