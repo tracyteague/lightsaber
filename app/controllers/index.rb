@@ -15,7 +15,7 @@ get '/sealions/new' do
 end
 
 post '/sealions/new' do
-  new_sealion = Sealion.create{params}
+  new_sealion = Sealion.create(first_name: params[:first_name], last_name: params[:last_name], age: params[:age], location: params[:location], quirk: params[:quirk])
   redirect "/sealions/#{new_sealion.id}"
 end
 
