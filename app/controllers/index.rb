@@ -11,7 +11,7 @@ get '/sealions' do
 end
 
 get '/sealions/new' do
-  'This is where I will create a form to post a new Sealion.'
+  erb :new
 end
 
 post '/sealions/new' do
@@ -20,11 +20,9 @@ post '/sealions/new' do
 end
 
 get '/sealions/:id' do
-  sealion = Sealion.find(params[:id])
+  @sealion = Sealion.find_by(id: params[:id])
   erb :show
 end
-
-
 
 put '/sealions/:id' do
   Sealion.find_by(id: params[:id]).update_attributes!(params)
