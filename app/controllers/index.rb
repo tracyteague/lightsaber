@@ -32,26 +32,19 @@ get '/sealions/:id/edit' do
 put '/sealions/:id/edit' do
   @sealion = Sealion.find_by(id: params[:id])
 
-  if @sealion
+  return 404 unless @sealion
     @sealion.first_name = params[:first_name]
     @sealion.last_name = params[:last_name]
     @sealion.age = params[:age]
     @sealion.location = params[:location]
     @sealion.quirk = params[:quirk]
+    redirect "/sealions/#{@sealion.id}" if @sealion.save!
 
-    if @sealion.save
-      redirect "/sealions/#{@sealion.id}"
-    else
-      [500, '"Ar, ar - arr-or! Something seems to have went wrong.']
-    end
-
-  else
-    [404, "Ar, ar - arr-or! This sealion has not been found."]
-  end
 end
+ #fix delete
 
-delete '/sealions/:id' do
-  sealion = Sealion.find_by(id: params[:id])
-  sealion.destroy!
+delete '/sealions/:id' do |id|
+  @sealion = Sealion.find_by(id: params[:id])
+  @sealion.destroy!
   redirect '/sealions'
 end
