@@ -5,6 +5,7 @@ gem 'sinatra'
 gem 'activerecord'
 gem 'pg'
 gem 'activesupport'
+gem 'jasmine'
 
 
 group :test do
