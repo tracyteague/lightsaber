@@ -1,35 +1,50 @@
-require 'sinatra'
+# require 'sinatra'
 
 get '/' do
-  'Tracy Festa Teague'
-end
-
-# "show RESTFUL command
-get '/sealions/:id' do
-  show = Sealion.find(params[:id])
-  "Name: #{show.first_name} #{show.last_name}, Age: #{show.age}, Location: #{show.location}, Quirk: #{show.quirk}"
+  @sealions = Sealion.all
+  erb :index
 end
 
 get '/sealions' do
-  Sealion.all.to_json
+  @sealions = Sealion.all
+  erb :index
 end
 
-#changed redirect to '/sealions/:id' with new sealion object
-post '/sealions' do
-  Sealion.create{params}
+get '/sealions/new' do
+  erb :new
+end
+
+post '/sealions/new' do
+  new_sealion = Sealion.create(first_name: params[:first_name], last_name: params[:last_name], age: params[:age], location: params[:location], quirk: params[:quirk])
+  redirect "/sealions/#{new_sealion.id}"
+end
+
+get '/sealions/:id' do
+  @sealion = Sealion.find_by(id: params[:id])
+  erb :show
+end
+
+get '/sealions/:id/edit' do
+   @sealion = Sealion.find_by(id: params[:id])
+   erb :edit
+ end
+
+put '/sealions/:id/edit' do
+  @sealion = Sealion.find_by(id: params[:id])
+
+  return 404 unless @sealion
+    @sealion.first_name = params[:first_name]
+    @sealion.last_name = params[:last_name]
+    @sealion.age = params[:age]
+    @sealion.location = params[:location]
+    @sealion.quirk = params[:quirk]
+    redirect "/sealions/#{@sealion.id}" if @sealion.save!
+
+end
+ #fix delete
+
+delete '/sealions/:id' do |id|
+  @sealion = Sealion.find_by(id: params[:id])
+  @sealion.destroy!
   redirect '/sealions'
 end
-
-#changed redirect to '/sealions/:id' with new update
-put '/sealions' do
-  Sealion.find(params[:id]).update_attributes!(params)
-  redirect '/sealions'
-end
-
-delete '/sealions' do
-  Sealion.find(params[:id]).destroy!
-  redirect '/sealions'
-end
-
-# NOTE TO SELF: May want to edit redirect for post/puts
-# to be /sealions/:id

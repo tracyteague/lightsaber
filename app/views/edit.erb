@@ -1,0 +1,13 @@
+<h1>Edit your Sealion information here.</h1>
+
+  <form action='/sealions/<%= @sealion.id%>/edit' method='post'>
+     <input type='hidden' name='_method' value='put' />
+
+    First name: <input type="text" name="first_name" value="<%= @sealion.first_name%>"><br>
+    Last name: <input type="text" name="last_name" value="<%= @sealion.last_name%>"><br>
+    Age: <input type="text" name="age" value="<%= @sealion.age%>"><br>
+    Location: <input type="text" name="location" value="<%= @sealion.location%>"><br>
+    Quirk: <input type="text" name="quirk" value="<%= @sealion.quirk%>"><br>
+    <input type="submit" value="Submit Edits">
+
+  </form>
