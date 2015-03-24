@@ -4,9 +4,9 @@
     <script src='javascripts/main.js'></script>
     <link rel='stylesheet' href='/stylesheets/application.css' type='text/css' />
     <title><%= @title || "LightSaber" %></title>
+    <%= erb :"_error" %>
   </head>
   <body>
-    <%= erb :"_error" %>
       <%= yield %>
   </body>
 </html>
