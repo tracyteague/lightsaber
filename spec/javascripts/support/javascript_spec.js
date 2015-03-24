@@ -43,3 +43,12 @@ describe("calculator", function(){
 
 });
 
+describe("errorModule", function(){
+  it("should exist", function(){
+    expect(errorModule).toBeDefined();
+  });
+
+  it("should have an existing function 'show()'", function() {
+    expect(errorModule.show).toBeDefined();
+  });
+});
