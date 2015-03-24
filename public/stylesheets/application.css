@@ -1,5 +1,6 @@
 #error_message {
   background-color: red;
   font-weight: bold;
-  font-color: white;
+  color: white;
+  visibility: hidden;
 }
