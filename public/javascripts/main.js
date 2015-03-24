@@ -19,8 +19,10 @@ var errorModule = {
     var message = document.getElementById('error_message');
     message.style.visibility = "visible"
   },
-
-  // hide: function(){
+  hide: function(){
+    var message = document.getElementById('error_message');
+    message.style.visibility = "hidden"
+  },
 
   // },
   // change: function(){
