@@ -15,5 +15,15 @@ var calculator = {
 }
 
 var errorModule = {
+  show: function(){
+    var message = document.getElementById('error_message');
+    message.style.visibility = "visible"
+  },
 
+  // hide: function(){
+
+  // },
+  // change: function(){
+
+  // }
 }
