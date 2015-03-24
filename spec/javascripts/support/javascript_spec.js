@@ -13,7 +13,7 @@ describe("calculator", function(){
     expect(calculator.add).toBeDefined();
   });
 
-  it("should have a function to find the sum of two numbers", function() {
+  it("add() should find the sum of two numbers", function() {
     expect(calculator.add(2,3)).toEqual(5);
   });
 
