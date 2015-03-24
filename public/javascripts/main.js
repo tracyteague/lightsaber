@@ -23,9 +23,8 @@ var errorModule = {
     var message = document.getElementById('error_message');
     message.style.visibility = "hidden"
   },
-
-  // },
-  // change: function(){
-
-  // }
+   change: function(new_message){
+    var message = document.getElementById('error_message');
+    message.innerHTML = new_message
+  }
 }
