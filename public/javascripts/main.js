@@ -13,3 +13,7 @@ var calculator = {
     return x / y
   }
 }
+
+var errorModule = {
+
+}
