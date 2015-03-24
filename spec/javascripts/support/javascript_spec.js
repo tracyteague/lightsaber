@@ -51,4 +51,12 @@ describe("errorModule", function(){
   it("should have an existing function 'show()'", function() {
     expect(errorModule.show).toBeDefined();
   });
+
+  it("should have an existing function 'hide()'", function() {
+    expect(errorModule.hide).toBeDefined();
+  });
+
+  it("should have an existing function 'change()'", function() {
+    expect(errorModule.change).toBeDefined();
+  });
 });
