@@ -9,6 +9,10 @@ describe("calculator", function(){
     expect(calculator).toBeDefined();
   });
 
+  it("should have a function 'add()'", function() {
+    expect(calculator.add).toBeDefined();
+  });
+
   it("should have a function to find the sum of two numbers", function() {
     expect(calculator.add(2,3)).toEqual(5);
   });
