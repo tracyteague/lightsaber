@@ -1,3 +1,4 @@
+// currently only working for two numbers
 var calculator = {
   add: function(x, y) {
     return x + y
