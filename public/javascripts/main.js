@@ -10,7 +10,11 @@ var calculator = {
     return x * y
   },
   divide: function (x, y) {
+    if(y==0) {
+      return
+    } else {
     return x / y
+    }
   }
 }
 
